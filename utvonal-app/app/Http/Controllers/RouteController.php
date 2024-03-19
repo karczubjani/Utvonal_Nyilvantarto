@@ -44,6 +44,5 @@ class RouteController extends Controller
         return redirect()->route('routes.index')
                          ->with('success', 'Route created successfully.');
     }
-
 }
 
