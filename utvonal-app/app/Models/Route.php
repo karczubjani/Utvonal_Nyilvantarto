@@ -13,4 +13,3 @@ class Route extends Model
         return $this->belongsTo(Vehicle::class);
     }
 }
-
