@@ -7,16 +7,21 @@ use App\Models\Vehicle;
 
 class VehicleController extends Controller
 {
-    public function index()
+    public function create()
     {
-        $vehicles = Vehicle::all();
-        return view('vehicles.index', compact('vehicles'));
+        return view('vehicles.create');
     }
 
-    public function show($id)
+    public function store(Request $request)
     {
-        $vehicle = Vehicle::findOrFail($id);
-        return view('vehicles.show', compact('vehicle'));
+        $validatedData = $request->validate([
+            'plate_number' => 'required|string',
+            'type' => 'required|string',
+            'consumption' => 'required|numeric',
+        ]);
+
+        Vehicle::create($validatedData);
+
+        return redirect('/vehicles/create')->with('success', 'Gépjármű sikeresen rögzítve!');
     }
 }
-

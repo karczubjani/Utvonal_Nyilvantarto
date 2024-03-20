@@ -6,8 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
-    public function routes()
-    {
-        return $this->hasMany(Route::class);
-    }
+    protected $fillable = ['plate_number', 'type', 'consumption'];
 }

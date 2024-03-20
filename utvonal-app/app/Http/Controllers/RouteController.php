@@ -8,17 +8,6 @@ use App\Models\Vehicle;
 
 class RouteController extends Controller
 {
-    public function index()
-    {
-        $routes = Route::all();
-        return view('routes.index', compact('routes'));
-    }
-
-    public function show($id)
-    {
-        $route = Route::findOrFail($id);
-        return view('routes.show', compact('route'));
-    }
     public function create()
     {
         $vehicles = Vehicle::all();
@@ -27,22 +16,17 @@ class RouteController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'datetime' => 'required',
-            'from' => 'required',
-            'to' => 'required',
-            'partner_name' => 'required',
-            'distance' => 'required',
-            'vehicle_id' => 'required',
+        $validatedData = $request->validate([
+            'date_time' => 'required|date',
+            'from' => 'required|string',
+            'to' => 'required|string',
+            'partner_name' => 'required|string',
+            'distance' => 'required|numeric',
+            'vehicle_id' => 'required|exists:vehicles,id',
         ]);
-    
-        // Kizárjuk az _token mezőt a kérésekből
-        $data = $request->except('_token');
-    
-        Route::create($data);
-    
-        return redirect()->route('routes.index')
-                         ->with('success', 'Route created successfully.');
+
+        Route::create($validatedData);
+
+        return redirect('/routes/create')->with('success', 'Útvonal sikeresen rögzítve!');
     }
 }
-
