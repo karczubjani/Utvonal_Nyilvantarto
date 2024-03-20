@@ -29,4 +29,36 @@ class RouteController extends Controller
 
         return redirect('/routes/create')->with('success', 'Útvonal sikeresen rögzítve!');
     }
+
+    public function index(Request $request)
+    {
+        $vehicles = Vehicle::all();
+        $vehicleId = $request->input('vehicle_id');
+        $routesQuery = Route::query();
+    
+        if ($vehicleId) {
+            $routesQuery->where('vehicle_id', $vehicleId);
+        }
+    
+        $routes = $routesQuery->get();
+    
+        // Összes megtett távolság számítása
+        $totalDistance = $routes->sum('distance');
+    
+        // Összes útvonalhoz tartozó gépjárművek lekérése
+        $vehicles = Vehicle::all();
+    
+        // Összes felhasznált üzemanyag kiszámítása
+        $totalFuel = 0;
+        foreach ($routes as $route) {
+            foreach ($vehicles as $vehicle) {
+                if ($route->vehicle_id == $vehicle->id) {
+                    $totalFuel += ($route->distance * $vehicle->consumption) / 100;
+                    break;
+                }
+            }
+        }
+    
+        return view('routes.index', compact('routes', 'totalDistance', 'totalFuel', 'vehicles'));
+    }
 }
