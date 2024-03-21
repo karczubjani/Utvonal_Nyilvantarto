@@ -37,7 +37,6 @@ class RouteController extends Controller
         $vehicleId = $request->input('vehicle_id');
         $routesQuery = Route::query();
         $validatedData['datetime'] = Carbon::parse($request->date_time);
-        Route::create($validatedData);
 
         if ($vehicleId) {
             $routesQuery->where('vehicle_id', $vehicleId);
