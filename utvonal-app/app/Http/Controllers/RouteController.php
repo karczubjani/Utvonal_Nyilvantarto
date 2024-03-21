@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Route;
 use App\Models\Vehicle;
+use Carbon\Carbon;
 
 class RouteController extends Controller
 {
@@ -35,7 +36,9 @@ class RouteController extends Controller
         $vehicles = Vehicle::all();
         $vehicleId = $request->input('vehicle_id');
         $routesQuery = Route::query();
-    
+        $validatedData['datetime'] = Carbon::parse($request->date_time);
+        Route::create($validatedData);
+
         if ($vehicleId) {
             $routesQuery->where('vehicle_id', $vehicleId);
         }
