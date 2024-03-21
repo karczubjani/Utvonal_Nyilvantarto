@@ -28,6 +28,11 @@
 </div>
 
 <div>
+    <h2>Összes megtett kilométer: {{ $totalDistance }} km</h2>
+    <h2>Összes felhasznált üzemanyag: {{ $totalFuel }} liter</h2>
+</div>
+
+<div>
 <form method="GET" action="{{ route('routes.create') }}">
     <button type="submit" class="btn btn-secondary">Tovább az útvonal rögzítéséhez</button>
 </form>
