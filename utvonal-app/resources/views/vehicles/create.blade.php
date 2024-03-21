@@ -16,4 +16,10 @@
     
 </form>
 
-<a href="{{ route('routes.create') }}">Tovább az útvonal rögzítéséhez</a>
+<form method="GET" action="{{ route('routes.create') }}">
+    <button type="submit" class="btn btn-secondary">Tovább az útvonal rögzítéséhez</button>
+</form>
+
+<form method="GET" action="{{ route('routes.index') }}">
+    <button type="submit" class="btn btn-secondary">Tovább a lekérdezéshez</button>
+</form>

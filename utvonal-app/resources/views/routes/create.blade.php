@@ -33,4 +33,10 @@
     
 </form>
 
-<a href="{{ route('vehicles.create') }}">Tovább az jármű rögzítéséhez</a>
+<form method="GET" action="{{ route('vehicles.create') }}">
+    <button type="submit" class="btn btn-secondary">Tovább a jármű rögzítéséhez</button>
+</form>
+
+<form method="GET" action="{{ route('routes.index') }}">
+    <button type="submit" class="btn btn-secondary">Tovább a lekérdezéshez</button>
+</form>

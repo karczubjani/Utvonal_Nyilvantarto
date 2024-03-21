@@ -2,6 +2,7 @@
 
 @include('routes.filter')
 
+<div>
 <table>
     <thead>
         <tr>
@@ -24,4 +25,14 @@
         @endforeach
     </tbody>
 </table>
+</div>
 
+<div>
+<form method="GET" action="{{ route('routes.create') }}">
+    <button type="submit" class="btn btn-secondary">Tovább az útvonal rögzítéséhez</button>
+</form>
+
+<form method="GET" action="{{ route('vehicles.create') }}">
+    <button type="submit" class="btn btn-secondary">Tovább a jármű rögzítéséhez</button>
+</form>
+</div>
