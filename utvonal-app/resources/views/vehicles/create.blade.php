@@ -13,4 +13,7 @@
         <input type="number" step="0.01" id="consumption" name="consumption" required>
     </div>
     <button type="submit">Mentés</button>
+    
 </form>
+
+<a href="{{ route('routes.create') }}">Tovább az útvonal rögzítéséhez</a>

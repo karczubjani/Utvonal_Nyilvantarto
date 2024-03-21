@@ -29,4 +29,8 @@
         </select>
     </div>
     <button type="submit">Mentés</button>
+    <br><br>
+    
 </form>
+
+<a href="{{ route('vehicles.create') }}">Tovább az jármű rögzítéséhez</a>
